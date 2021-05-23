@@ -15,7 +15,7 @@ interface MyTasksListProps {
     title: string;
     done: boolean;
   }[];
-  onPress: (id: number, done: boolean) => void;
+  onPress: (id: number) => void;
   onLongPress: (id: number) => void;
 }
 
@@ -27,22 +27,23 @@ export function MyTasksList({ tasks, onLongPress, onPress }: MyTasksListProps) {
       renderItem={({ item, index }) => {
         return (
           <TouchableOpacity
-            style={item.done ? styles.taskButtonDone : styles.taskButton}
+            
             testID={`button-${index}`}
             activeOpacity={0.7}
             //TODO - use onPress, onLongPress and style props
-            onPress = {() => onPress(item.id, item.done)}
-            onLongPress = {() => onLongPress(item.id)} 
+            onPress = {() => onPress(item.id)}
+            onLongPress = {() => onLongPress(item.id)}
+            style={item.done ? styles.taskButtonDone : styles.taskButton} 
             
           >
             <View 
-              style={item.done ? styles.taskMarkerDone : styles.taskMarker}
               testID={`marker-${index}`}
               //TODO - use style prop 
+              style={item.done ? styles.taskMarkerDone : styles.taskMarker}
             />
             <Text 
-              style={item.done ? styles.taskTextDone : styles.taskText}
               //TODO - use style prop
+              style={item.done ? styles.taskTextDone : styles.taskText}
             >
               {item.title}
             </Text>

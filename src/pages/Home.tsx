@@ -31,9 +31,15 @@ export function Home() {
     }
   }
 
-  function handleMarkTaskAsDone(id: number, done: boolean) {
+  function handleMarkTaskAsDone(id: number) {
     //TODO - mark task as done if exists
-    console.log(id, done)
+    
+    const task = tasks.find(task => task.id == id)
+    if (task != undefined) {
+      task.done = !task.done;
+      setTasks(oldState =>[...oldState]);
+    }
+    console.log(id)
   }
 
   function handleRemoveTask(id: number) {
